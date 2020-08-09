@@ -34,8 +34,8 @@ extern SPI_HandleTypeDef SD_SPI_HANDLE;
 
 /* Function prototypes */
 
-#define FCLK_SLOW() { SD_SPI_HANDLE.Instance->I2SPR = 128; }	/* Set SCLK = slow */
-#define FCLK_FAST() { SD_SPI_HANDLE.Instance->I2SPR = 8; }	/* Set SCLK = fast */
+#define FCLK_SLOW() { SD_SPI_HANDLE.Instance->I2SPR = 128; }	/* Set SCLK = slow, approx 280 KBits/s*/
+#define FCLK_FAST() { SD_SPI_HANDLE.Instance->I2SPR = 8; }	/* Set SCLK = fast, approx 4.5 MBits/s */
 
 #define CS_HIGH()	{HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);}
 #define CS_LOW()	{HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_RESET);}
