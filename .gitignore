@@ -35,6 +35,12 @@
 *.i*86
 *.x86_64
 *.hex
+*.bin
+*.elf
+Debug/
+Release/
+*.launch
+
 
 # Debug files
 *.dSYM/
