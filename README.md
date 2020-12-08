@@ -18,8 +18,12 @@ I also wrote a [blog post](https://01001000.xyz/2020-08-09-Tutorial-STM32CubeIDE
 4. In `main.h` ensure that you have `#define`s for `SD_SPI_HANDLE` (e.g. hspi2), `SD_CS_GPIO_Port`, and `SD_CS_Pin`.
 5. Double check what would be suitable high/low speeds for your SPI driver and the prescalars you will need to use for the SPI port. Configure these at in `user_diskio_spi.c:`
 ```c
-#define FCLK_SLOW() { SD_SPI_HANDLE.Instance->I2SPR = 128; }	/* Set SCLK = slow, approx 280 KBits/s*/
-#define FCLK_FAST() { SD_SPI_HANDLE.Instance->I2SPR = 8; }	/* Set SCLK = fast, approx 4.5 MBits/s */
+//(Note that the _256 is used as a mask to clear the prescalar bits as it provides binary 111 in the correct position)
+
+#define FCLK_SLOW() { MODIFY_REG(SD_SPI_HANDLE.Instance->CR1, SPI_BAUDRATEPRESCALER_256, SPI_BAUDRATEPRESCALER_128); }	/* Set SCLK = slow, approx 280 KBits/s*/
+#define FCLK_FAST() { MODIFY_REG(SD_SPI_HANDLE.Instance->CR1, SPI_BAUDRATEPRESCALER_256, SPI_BAUDRATEPRESCALER_8); }	/* Set SCLK = fast, approx 4.5 MBits/s */
+
 ```
+
 
 You can now call the FatFS functions from your `main()`. For more detailed explanation of this, with examples, check out [the blog post](https://01001000.xyz/2020-08-09-Tutorial-STM32CubeIDE-SD-card/).
