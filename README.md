@@ -27,3 +27,7 @@ I also wrote a [blog post](https://01001000.xyz/2020-08-09-Tutorial-STM32CubeIDE
 
 
 You can now call the FatFS functions from your `main()`. For more detailed explanation of this, with examples, check out [the blog post](https://01001000.xyz/2020-08-09-Tutorial-STM32CubeIDE-SD-card/).
+
+## Additional note
+
+Also note that if you're using this process with your own custom circuit, you may need pull-up resistors on the SCK, MISO, and MOSI lines. The SD card module I used in this post includes them internally - if you're wiring your own design, you might find you need to add them. You can also consider enabling the internal pull up resistors. More details are included [here](https://github.com/kiwih/cubeide-sd-card/issues/2).
