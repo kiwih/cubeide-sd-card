@@ -12,8 +12,8 @@ I also wrote a [blog post](https://01001000.xyz/2020-08-09-Tutorial-STM32CubeIDE
 ## Adoption Guide
 
 1. Copy the driver files `FATFS/Target/user_diskio_spi.c` and `FATFS/Target/user_diskio_spi.h` into your CubeIDE project which has been configured to use FatFS.
-2. In `FATFS/Target/user_spi.c` add `#include "user_diskio_spi.h"`
-3. In `FATFS/Target/user_spi.c` call `USER_SPI_initialize(...)` in `USER_initialize(...)`, `USER_SPI_status(...)` in `USER_status(...)`, `USER_SPI_read(...)` in `USER_read(...)`, `USER_SPI_write(...)` in `USER_write(...)`, and `USER_SPI_ioctl(...)` in `USER_ioctl(...)`.
+2. In `FATFS/Target/user_diskio_spi.c` add `#include "user_diskio_spi.h"`
+3. In `FATFS/Target/user_diskio_spi.c` call `USER_SPI_initialize(...)` in `USER_initialize(...)`, `USER_SPI_status(...)` in `USER_status(...)`, `USER_SPI_read(...)` in `USER_read(...)`, `USER_SPI_write(...)` in `USER_write(...)`, and `USER_SPI_ioctl(...)` in `USER_ioctl(...)`.
   - We embed in this manner to avoid conflicts with the CubeIDE code generator. Make sure these function calls are inside the `USER` comment blocks.
 4. In `main.h` ensure that you have `#define`s for `SD_SPI_HANDLE` (e.g. hspi2), `SD_CS_GPIO_Port`, and `SD_CS_Pin`.
 5. Double check what would be suitable high/low speeds for your SPI driver and the prescalars you will need to use for the SPI port. Configure these at in `user_diskio_spi.c:`
