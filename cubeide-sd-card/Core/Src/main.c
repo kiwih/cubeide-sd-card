@@ -144,7 +144,7 @@ int main(void)
     //Now let's try to open file "test.txt"
     fres = f_open(&fil, "test.txt", FA_READ);
     if (fres != FR_OK) {
-  	myprintf("f_open error (%i)\r\n");
+  	myprintf("f_open error (%i)\r\n", fres);
   	while(1);
     }
     myprintf("I was able to open 'test.txt' for reading!\r\n");
@@ -179,7 +179,7 @@ int main(void)
     if(fres == FR_OK) {
   	myprintf("Wrote %i bytes to 'write.txt'!\r\n", bytesWrote);
     } else {
-  	myprintf("f_write error (%i)\r\n");
+  	myprintf("f_write error (%i)\r\n", fres);
     }
 
     //Be a tidy kiwi - don't forget to close your file!
