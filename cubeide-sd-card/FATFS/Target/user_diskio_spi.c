@@ -132,9 +132,7 @@ void xmit_spi_multi (
 	UINT btx			/* Number of bytes to send (even number) */
 )
 {
-	for(UINT i=0; i<btx; i++) {
-		xchg_spi(*(buff+i));
-	}
+	HAL_SPI_Transmit(&SD_SPI_HANDLE, buff, btx, 100);
 }
 #endif
 
